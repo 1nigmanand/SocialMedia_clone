@@ -1,0 +1,7 @@
+VIDEO = https://www.youtube.com/watch?v=K8YELRmUb5o
+
+Stop1
+TimeStamp = 46:06
+
+Stop2
+TimeStamp = 59:10
