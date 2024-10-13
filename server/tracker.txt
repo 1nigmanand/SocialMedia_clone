@@ -5,3 +5,6 @@ TimeStamp = 46:06
 
 Stop2
 TimeStamp = 59:10
+
+Stop3
+TimeStamp = 01:11

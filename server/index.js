@@ -8,8 +8,16 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import path from 'path';
 import {fileURLToPath} from 'url';
-import authRoute from './routes/auth.js'
-import {register} from './controller/auth.js'
+import authRoute from './routes/auth.js';
+import userRoutes from './routes/users.js';
+import postRoutes from './routes/posts.js';
+import { register } from './controller/auth.js';
+import { createPost } from './controller/posts.js';
+import { varifyToken } from './middleware/auth.js';
+import User from './models/User.js';
+import Post from './models/Post.js';
+import {users, posts} from './data/index.js'
+
 
 
 /* configuration */
@@ -42,17 +50,21 @@ const upload = multer({storage});
 
 /*ROUTES WITH FILES*/
 app.post('auth/register', upload.single('picture'), register)
+app.post('/posts', varifyToken, upload.single('picture'),createPost)
 
 
 /*ROUTES */
 app.use('/auth',authRoute);
-app.use('/users',userRoutes)
+app.use('/users',userRoutes);
+app.use('/posts',postRoutes);
 
  
 /*MONGOOSE SETUP*/
 const PORT = process.env.PORT || 6001;
 mongoose.connect(process.env.MONGO_URL).then(()=>{
     app.listen(PORT,()=> console.log('Server Port:',PORT))
+    // User.insertMany(users);
+    // Post.insertMany(posts);
 }).catch((error)=>console.log(`${error} did not connect`))
 
 

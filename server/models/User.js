@@ -7,7 +7,7 @@ const UserSchema = new mongoose.Schema(
             min:2,
             max:50
         },
-        lastname:{
+        lastName:{
             type: String,
             required: true,
             min:2,
@@ -23,7 +23,6 @@ const UserSchema = new mongoose.Schema(
             type: String,
             required: true,
             max:50,
-            unique: true
         },
         picturePath:{
             type: String,
